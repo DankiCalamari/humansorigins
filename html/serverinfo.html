@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Humans Origin Server</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/style.css">
+</head>
+<body>
+
+    <!-- Navigation bar -->
+    <div class="navbar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="updates.html">News</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="serverinfo.html">Server Info</a></li>
+        </ul>
+    </div>
+
+    <!-- Server status container -->
+    <div class="status-container">
+        <h1>Server Status</h1>
+        <div id="status">Loading...</div> <!-- Added status div here -->
+    </div>
+
+    <!-- JavaScript to fetch server status -->
+    <script>
+        async function fetchServerStatus() {
+            try {
+                const response = await fetch('https://api.mcsrvstat.us/3/51.161.192.26:25652');
+                const data = await response.json();
+
+                const statusElement = document.getElementById('status');
+                
+                if (data.online) {
+                    statusElement.innerHTML = `
+                        <p class="online">🟢 Server is Online</p>
+                        <p><strong>IP:</strong> ${data.ip}:${data.port}</p>
+                        <p><strong>Version:</strong> ${data.version}</p>
+                        <p><strong>Players:</strong> ${data.players.online} / ${data.players.max}</p>
+                        <p><strong>MOTD:</strong> ${data.motd.clean.join('<br>')}</p>
+                    `;
+                } else {
+                    statusElement.innerHTML = `<p class="offline">🔴 Server is Offline</p>`;
+                }
+            } catch (error) {
+                document.getElementById('status').innerHTML = `<p class="offline">Error fetching server status</p>`;
+                console.error('Error fetching server status:', error);
+            }
+        }
+
+        // Call the function to fetch server status on page load
+        fetchServerStatus();
+    </script>
+<iframe src="https://discord.com/widget?id=1208303050217889852&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+</body>
+</html>

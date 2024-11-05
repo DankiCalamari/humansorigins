@@ -1,0 +1,52 @@
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333333;
+  }
+  
+.navbar li {
+    float: left;
+  }
+  
+.navbar a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  /* Change the link color to #111 (black) on hover */
+  .navbar a:hover {
+    background-color: #E8DDB5;
+  }
+
+  .status-container {
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    max-width: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  .online {
+    color: green;
+  }
+  .offline {
+    color: red;
+  }
+body {
+    background-color: #666a86;
+    font-family: 'Anonymous Pro';font-size: 22px;
+}
+.homepage h1 {
+    text-align: center;
+    font-family: 'Anonymous Pro'
+    }
+.homepage h2 {
+    text-align: center;
+    font-family: 'Anonymous Pro'
+    }
