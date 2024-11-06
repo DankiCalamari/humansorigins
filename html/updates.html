@@ -17,5 +17,42 @@
             <li><a href="serverinfo.html">Server Info</a></li>
         </ul>
     </div>
+    <div id="messages">
+
+    <script>
+        async function fetchMessages() {
+            try {
+                const response = await fetch('http://localhost:3000/api/messages');
+                const messages = await response.json();
+                
+                const messagesDiv = document.getElementById('messages');
+                messagesDiv.innerHTML = ''; // Clear existing messages
+
+                messages.forEach(msg => {
+                    const messageElement = document.createElement('div');
+                    messageElement.classList.add('message');
+                    
+                    const author = document.createElement('span');
+                    author.classList.add('author');
+                    author.textContent = msg.author.username;
+                    
+                        const content = document.createElement('span');
+                        content.classList.add('content');
+                        content.textContent = `: ${msg.content}`;
+
+                        messageElement.appendChild(author);
+                        messageElement.appendChild(content);
+                        messagesDiv.appendChild(messageElement);
+                    });
+                } catch (error) {
+                    console.error('Error fetching messages:', error);
+                }
+            }
+
+            // Fetch messages on page load
+            fetchMessages();
+     </script>
+    </div>
+
 </body>
 </html>
